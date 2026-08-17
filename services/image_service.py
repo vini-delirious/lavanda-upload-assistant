@@ -5,6 +5,12 @@ class ImageService:
 
     def __init__(self):
 
+        from services.image_processor import ImageProcessor
+
+        self.output_folder = Path("output")
+
+        self.processor = ImageProcessor()
+        
         self.input_folder = Path("input")
 
         self.extensions = [".jpg", ".jpeg", ".png", ".webp"]
@@ -28,4 +34,16 @@ class ImageService:
 
                 images.append(file)
 
-        print(f"🖼️ Encontradas {len(images)} imagens.")
+        
+        print(f"🖼️ Encontradas {len(images)} imagens.\n")
+
+        self.output_folder.mkdir(exist_ok=True)
+
+        for image in images:
+
+            self.processor.resize_image(
+                image,
+                self.output_folder
+    )
+
+        print("✅ Processamento concluído.")

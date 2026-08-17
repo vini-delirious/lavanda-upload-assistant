@@ -18,3 +18,6 @@ temp/
 # Windows
 Thumbs.db
 Desktop.ini
+
+# Imagens geradas
+output/
